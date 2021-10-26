@@ -2,7 +2,7 @@ const { IS_DEFAULT_LOCALE, LOCALE } = process.env;
 
 module.exports = {
   reactStrictMode: true,
-  basePath: IS_DEFAULT_LOCALE ? "/" : `/${LOCALE}`,
+  basePath: IS_DEFAULT_LOCALE ? "" : `/${LOCALE}`,
   async rewrites() {
     if (IS_DEFAULT_LOCALE) {
       return [
