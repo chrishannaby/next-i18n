@@ -1,6 +1,7 @@
 import Head from "next/head";
 import styles from "../styles/Home.module.css";
 import Link from "next/link";
+import { posts } from "../utils/data";
 
 export default function Home() {
   return (
@@ -12,7 +13,6 @@ export default function Home() {
       </Head>
 
       <main className={styles.main}>
-        <h1 className={styles.title}>Welcome home</h1>
         <ul>
           <li>
             <a href="/">English</a>
@@ -22,6 +22,18 @@ export default function Home() {
               <a>Deutsch</a>
             </Link>
           </li>
+        </ul>
+        <h1 className={styles.title}>Welcome home</h1>
+        <ul>
+          {posts.map((post) => {
+            return (
+              <li key={post}>
+                <Link href={`/posts/${post}`}>
+                  <a>{post}</a>
+                </Link>
+              </li>
+            );
+          })}
         </ul>
       </main>
     </div>
