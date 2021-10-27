@@ -14,6 +14,14 @@ module.exports = {
           source: "/de-de/:path*",
           destination: "https://next-i18n-zones-de.netlify.app/de-de/:path*",
         },
+        {
+          source: "/es-es",
+          destination: "https://next-i18n-zones-es.netlify.app/es-es",
+        },
+        {
+          source: "/de-de/:path*",
+          destination: "https://next-i18n-zones-es.netlify.app/es-es/:path*",
+        },
       ];
     }
     return [];
