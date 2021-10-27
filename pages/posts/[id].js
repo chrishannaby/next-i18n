@@ -1,4 +1,3 @@
-import styles from "../../styles/Home.module.css";
 import { posts } from "../../utils/data";
 import Link from "next/link";
 
@@ -21,15 +20,17 @@ export async function getStaticPaths() {
   return { paths, fallback: "blocking" };
 }
 
-export default function Home({ id }) {
+export default function Post({ title, body }) {
   return (
-    <div className={styles.container}>
-      <main className={styles.main}>
-        <h1 className={styles.title}>Welcome to {id}</h1>
-        <Link href="/">
-          <a>Home</a>
-        </Link>
-      </main>
-    </div>
+    <>
+      <div className="text-lg max-w-prose mx-auto">
+        <h1 className="mt-2 block text-3xl text-center leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">
+          {title}
+        </h1>
+      </div>
+      <div className="mt-6 prose prose-indigo prose-lg text-gray-500 mx-auto">
+        <p>{body}</p>
+      </div>
+    </>
   );
 }
