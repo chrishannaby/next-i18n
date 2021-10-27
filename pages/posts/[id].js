@@ -1,19 +1,23 @@
-import { posts } from "../../utils/data";
 import Head from "next/head";
+import { RichText } from "prismic-reactjs";
+import { getPosts, getPost } from "../../utils/prismic";
 
 export async function getStaticProps({ params }) {
+  const post = await getPost(params.id);
   return {
     props: {
-      id: params.id,
-    }, // will be passed to the page component as props
+      title: post.data.title[0].text,
+      body: post.data.body,
+    },
   };
 }
 
 export async function getStaticPaths() {
-  const paths = posts.map((p) => {
+  const posts = await getPosts();
+  const paths = posts.results.map((post) => {
     return {
       params: {
-        id: p,
+        id: post.uid,
       },
     };
   });
@@ -32,7 +36,7 @@ export default function Post({ title, body }) {
         </h1>
       </div>
       <div className="mt-6 prose prose-indigo prose-lg text-gray-500 mx-auto">
-        <p>{body}</p>
+        <RichText render={body} />
       </div>
     </>
   );

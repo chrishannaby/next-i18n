@@ -13,39 +13,16 @@ export async function getHome() {
   return home.data;
 }
 
-export async function getNavigation() {
+export async function getPost(slug) {
   const api = await getApi();
-  const nav = await api.getSingle("navigation", {
+  const post = await api.getByUID("post", slug, {
     lang: locale,
   });
-  return nav.data.main_nav_links.map((link) => {
-    return {
-      name: link.link_title,
-      href: link.link_address,
-    };
-  });
+  return post;
 }
 
-export async function getProduct(slug) {
+export async function getPosts() {
   const api = await getApi();
-  const product = await api.getByUID("product", slug, {
-    lang: locale,
-  });
-  return product;
-}
-
-export async function getMostPopularProductsUid() {
-  const api = await getApi();
-  const mostPopular = await api.query(
-    [
-      Prismic.Predicates.at("document.type", "product"),
-      Prismic.Predicates.at("document.tags", ["most_popular"]),
-    ],
-    {
-      fetch: "product.uid",
-      lang: locale,
-      pageSize: 100,
-    }
-  );
-  return mostPopular.results.map((r) => r.uid);
+  const posts = await api.query(Prismic.Predicates.at("document.type", "post"));
+  return posts;
 }

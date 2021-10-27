@@ -1,4 +1,5 @@
 import Link from "next/link";
+const { NEXT_PUBLIC_LOCALE } = process.env;
 
 export default function Header() {
   return (
@@ -12,14 +13,15 @@ export default function Header() {
             </a>
           </Link>
         </div>
-        <div className="flex items-center divide-x divide-gray-900">
-          <a className="px-3" href="/">
+        {NEXT_PUBLIC_LOCALE === "en-us" ? (
+          <Link href="/de-de">
+            <a className="px-3 hover:underline">Deutsch</a>
+          </Link>
+        ) : (
+          <a className="px-3 hover:underline" href="/">
             English
           </a>
-          <Link href="/de">
-            <a className="px-3">Deutsch</a>
-          </Link>
-        </div>
+        )}
       </div>
     </nav>
   );
