@@ -32,7 +32,6 @@ export default function Home({ title }) {
 
 export async function getStaticProps({ params }) {
   const homeData = await getHome();
-  console.log(homeData);
   return {
     props: {
       title: homeData.title[0].text,
