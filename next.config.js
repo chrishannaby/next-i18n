@@ -19,7 +19,7 @@ module.exports = {
           destination: "https://next-i18n-zones-es.netlify.app/es-es",
         },
         {
-          source: "/de-de/:path*",
+          source: "/es-es/:path*",
           destination: "https://next-i18n-zones-es.netlify.app/es-es/:path*",
         },
       ];
