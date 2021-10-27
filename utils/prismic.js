@@ -23,6 +23,11 @@ export async function getPost(slug) {
 
 export async function getPosts() {
   const api = await getApi();
-  const posts = await api.query(Prismic.Predicates.at("document.type", "post"));
+  const posts = await api.query(
+    Prismic.Predicates.at("document.type", "post"),
+    {
+      lang: locale,
+    }
+  );
   return posts;
 }
