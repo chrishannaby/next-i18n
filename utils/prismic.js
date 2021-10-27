@@ -7,7 +7,7 @@ async function getApi() {
 
 export async function getHome() {
   const api = await getApi();
-  const home = await api.getSingle("home", {
+  const home = await api.getSingle("h", {
     lang: locale,
   });
   return home.data;

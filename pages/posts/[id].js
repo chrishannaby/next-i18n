@@ -1,5 +1,5 @@
 import { posts } from "../../utils/data";
-import Link from "next/link";
+import Head from "next/head";
 
 export async function getStaticProps({ params }) {
   return {
@@ -23,6 +23,9 @@ export async function getStaticPaths() {
 export default function Post({ title, body }) {
   return (
     <>
+      <Head>
+        <title>Next.js | {title}</title>
+      </Head>
       <div className="text-lg max-w-prose mx-auto">
         <h1 className="mt-2 block text-3xl text-center leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">
           {title}
